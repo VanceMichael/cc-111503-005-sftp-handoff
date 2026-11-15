@@ -60,7 +60,7 @@ export async function fixture(scenario = 'normal') {
         if (entry?.bytes) stream.attrs(id, attrs(entry.bytes)); else stream.status(id, status.FAILURE);
       });
       stream.on('CLOSE', (id, handle) => { handles.delete(handle.toString()); stream.status(id, status.OK); });
-    }))));
+    })));
   });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   return { host: '127.0.0.1', port: server.address().port, username: 'fixture', password: 'local-fixture',
